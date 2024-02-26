@@ -6,7 +6,6 @@ import jwt_decode from "jwt-decode";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 import Home from "./pages/Home.js";
-import BlogPage from "./pages/BlogPage.js";
 
 import NavBar from "./modules/NavBar.js";
 
@@ -54,8 +53,6 @@ const App = () => {
             <Home path="/" handleLogin={handleLogin} handleLogout={handleLogout} userId={userId} />
           }
         />
-        <Route path="/blog/:title?" element={<BlogPage />} />
-        <Route path="/blog" element={<BlogPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
