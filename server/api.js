@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Bookmark = require("./models/bookmark");
 
 // import authentication library
 const auth = require("./auth");
@@ -42,6 +43,24 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.post("/bookmark", (req, res) => {
+  const newBookmark = new Bookmark({
+    name: req.body.name,
+    link: req.body.link,
+    type: req.body.type,
+    userId: "not yet implemented lol", // req.user._id,
+  });
+
+  newBookmark.save().then((query) => res.send(query));
+});
+
+router.get("/bookmarks", (req, res) => {
+  // if (req.user) {
+  //   Query.find({ userId: req.user._id }).then((queries) => res.send(queries));
+  // }
+  Bookmark.find({}).then((bookmarks) => res.send(bookmarks));
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
